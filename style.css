@@ -1,0 +1,51 @@
+h1,
+h2 {
+  text-align: center;
+}
+h1 {
+  color: midnightblue;
+  font-weight: 600;
+  font-family: "Abril Fatface", cursive;
+}
+
+h2 {
+  color: darksalmon;
+  font-weight: 700;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.days-icon {
+  font-size: xx-large;
+  text-align: center;
+}
+.card {
+  text-align: center;
+}
+.card-title {
+  font-weight: 800;
+  color: darksalmon;
+  text-transform: none;
+}
+.days {
+  color: darkcyan;
+}
+.btn-secondary {
+  transition: 180ms ease-in-out;
+}
+.btn-secondary:hover {
+  background-color: midnightblue;
+  border: 0px;
+}
+.today-icon {
+  font-size: 80px;
+}
+.card-group {
+  padding-bottom: 25px;
+}
+
+.form-control {
+  text-align: center;
+  margin: auto;
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width>>, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
+    
+
+
+    <title>Weather App Wireframe to HTML/CSS</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="today-icon">☀️</h1>
+      <h1 id="currentCity">Los Angeles</h1>
+      <h1 id="currentTemp">current temp</h1>
+        
+      </h1>
+      <h2 id="currentDate">Aug 8 2021</h2>
+      <br />
+      <br />
+
+      <div class="row">
+        <div class="col-6">
+          <form id="search-form">
+            <input
+              type="search"
+              id="search-input"
+              class="form-control"
+              placeholder="Enter a city to get the current weather there"
+            />
+            
+        </div>
+          </form>
+        </div>
+        
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="row">
+          <div class="card-group">
+            <div class="col-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">TODAY</h5>
+                  <p class="card-text">
+                    Partly Cloudy currently. Afternoon High of 86°
+                  </p>
+                  <p class="card-text">H: 86° L:63°</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Sunrise 🌄</h5>
+                  <p class="card-text">6:09AM</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Sunset 🌅</h5>
+                  <p class="card-text">7:45PM</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">AQI 🌫</h5>
+                  <p class="card-text">74</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+
+        <div class="row">
+          <div class="card-group">
+            <div class="card">
+              <div class="card-body">
+                <div class="days-icon">☀️</div>
+                <h5 class="card-title days">Sunday</h5>
+                <p class="card-text">Sunny</p>
+                <p>91 °</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="days-icon">☀️</div>
+                <h5 class="card-title days">Monday</h5>
+                <p class="card-text">Sunny</p>
+                <p>86 °</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="days-icon">☀️</div>
+                <h5 class="card-title days">Tuesday</h5>
+                <p class="card-text">Sunny</p>
+                <p>90 °</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="days-icon">☀️</div>
+                <h5 class="card-title days">Wednesday</h5>
+                <p class="card-text">Sunny</p>
+                <p>90 °</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="days-icon">☀️</div>
+                <h5 class="card-title days">Thursday</h5>
+                <p class="card-text">Sunny</p>
+                <p>91 °</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="days-icon">☀️</div>
+                <h5 class="card-title days">Friday</h5>
+                <p class="card-text">Sunny</p>
+                <p>91 °</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="days-icon">☀️</div>
+                <h5 class="card-title days">Saturday</h5>
+                <p class="card-text">Sunny</p>
+                <p>93 °</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
