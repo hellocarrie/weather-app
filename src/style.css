@@ -3,6 +3,9 @@ ul {
   text-align: left;
   padding: 0;
 }
+li::first-letter {
+  text-transform: uppercase;
+}
 
 .root {
   border: 1px solid grey;
