@@ -3,7 +3,7 @@ ul {
   text-align: left;
   padding: 0;
 }
-li::first-letter {
+li:first-letter {
   text-transform: uppercase;
 }
 
