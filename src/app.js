@@ -73,7 +73,7 @@ function displayTemperature(response) {
 
 function showFTemp(event) {
   event.preventDefault();
-  let fTemperature = (14 * 9) / 5 + 32;
+  let fTemperature = (temperatureElement.innerHTML * 9) / 5 + 32;
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(fTemperature);
 }
