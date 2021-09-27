@@ -12,7 +12,13 @@ function formatDate(timestamp) {
   //format Friday 10:00
   let date = new Date(timestamp);
   let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
   let mins = date.getMinutes();
+  if (mins < 10) {
+    mins = `0${mins}`;
+  }
   let day = date.getDay();
   let days = [
     "sunday",
@@ -41,17 +47,12 @@ function formatDate(timestamp) {
   let calDay = date.getDate();
   let year = date.getFullYear();
 
-  console.log(day);
-  console.log(date);
-  console.log(month);
-  console.log(calDay);
-  console.log(year);
-  return `<li>${days[day]} ${hours}:${mins}</li> <li>${months[month]} ${calDay} ${year}</li>`;
+  return `<li> Last updated: ${days[day]} ${hours}:${mins}</li> <li>${months[month]} ${calDay} ${year}</li>`;
 }
 
 function displayTemperature(response) {
   console.log(response);
-  console.log(response.data.weather[0].description);
+  console.log(response.data.weather[0].icon);
   console.log(response.data.wind.speed);
   let temperatureElement = document.querySelector("#temperature");
   let descriptionElement = document.querySelector("#description");
@@ -59,13 +60,26 @@ function displayTemperature(response) {
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date-time");
+  let iconElement = document.querySelector("#icon");
+  let icon = response.data.weather[0].icon;
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   descriptionElement.innerHTML = response.data.weather[0].description;
   cityElement.innerHTML = response.data.name;
-  humidityElement.innerHTML = `${response.data.main.humidity}%`;
+  humidityElement.innerHTML = `${response.data.main.humidity} %`;
   windElement.innerHTML = `${response.data.wind.speed} km/h`;
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.innerHTML = `<img src=" http://openweathermap.org/img/wn/${icon}@2x.png">`;
+}
+
+function showFTemp(event) {
+  event.preventDefault();
+  let fTemperature = (14 * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(fTemperature);
 }
 
 let form = document.querySelector("#city-search");
 form.addEventListener("submit", searchCity);
+
+let unitF = document.querySelector("#units-f");
+unitF.addEventListener("click", showFTemp);
