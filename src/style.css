@@ -62,7 +62,7 @@ body {
   margin-left: 10px;
   font-weight: 600;
 
-  font-size: 60px;
+  font-size: 72px;
   line-height: 1;
 }
 .temperature-set {
@@ -75,9 +75,10 @@ body {
   font-size: 20px;
 }
 footer {
-  text-align: center;
+  text-align: left;
   display: block;
   font-size: smaller;
+  padding: 10px;
 }
 
 #city {
@@ -86,4 +87,5 @@ footer {
 }
 #date-time {
   font-size: 13px;
+  color: #bebebe;
 }

@@ -1,3 +1,4 @@
+// handles the API call and gets city variable from handleSubmit function
 function searchCity(city) {
   let apiKey = "502951590779e9a44b221563a4491245";
 
@@ -5,7 +6,7 @@ function searchCity(city) {
 
   axios.get(apiURL).then(displayTemperature);
 }
-
+// formats Date and Time , returns out to displaytemperature function
 function formatDate(timestamp) {
   //format Friday 10:00
   let date = new Date(timestamp);
@@ -47,7 +48,7 @@ function formatDate(timestamp) {
 
   return `<li> Last updated: ${days[day]} ${hours}:${mins}</li> <li>${months[month]} ${calDay} ${year}</li>`;
 }
-
+// takes the response from API call and displays it in the HTML
 function displayTemperature(response) {
   console.log(response);
   console.log(response.data.weather[0].icon);
@@ -60,7 +61,8 @@ function displayTemperature(response) {
   let dateElement = document.querySelector("#date-time");
   let iconElement = document.querySelector("#icon");
   let icon = response.data.weather[0].icon;
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   descriptionElement.innerHTML = response.data.weather[0].description;
   cityElement.innerHTML = response.data.name;
   humidityElement.innerHTML = `${response.data.main.humidity} %`;
@@ -69,23 +71,36 @@ function displayTemperature(response) {
   iconElement.innerHTML = `<img src=" http://openweathermap.org/img/wn/${icon}@2x.png">`;
 }
 
-function showFTemp(event) {
+function displayFahrenheitTemperature(event) {
   event.preventDefault();
-  let fTemperature = (temperatureElement.innerHTML * 9) / 5 + 32;
+  let fTemperature = (celsiusTemperature * 9) / 5 + 32;
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(fTemperature);
 }
 
+// prevent page from loading & takes city input from user and calls SearchCity function
 function handleSubmit(event) {
   event.preventDefault();
   let cityInputEl = document.querySelector("#city-input");
   searchCity(cityInputEl.value);
-  console.log(cityInputEl.value);
 }
 
-searchCity("Paris");
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+// loads default city when a page loads
+searchCity("Montreal");
+
+let celsiusTemperature = null;
+
 let form = document.querySelector("#city-search");
 form.addEventListener("submit", handleSubmit);
 
 let unitF = document.querySelector("#units-f");
-unitF.addEventListener("click", showFTemp);
+unitF.addEventListener("click", displayFahrenheitTemperature);
+
+let unitC = document.querySelector("#units-c");
+unitC.addEventListener("click", displayCelsiusTemperature);
