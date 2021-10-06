@@ -48,6 +48,55 @@ function formatDate(timestamp) {
 
   return `<li> Last updated: ${days[day]} ${hours}:${mins}</li> <li>${months[month]} ${calDay} ${year}</li>`;
 }
+function formatDay(time) {
+  let date = new Date(time * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
+  return days[day];
+}
+//displays the 5 day daily forecast
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#weather-forecast");
+  let forecast = response.data.daily;
+  console.log(forecast);
+
+  let forecastHTML = `<div class = "row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+  
+              <div class="col-2">
+                <div class="forecast-date">${formatDay(forecastDay.dt)}</div>
+                <img class="forecast-icon" src=" http://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png" alt="" width="50"/>
+                <div class="forecast-temperature">
+                  <div class="forecast-temperature-max">Hi : ${Math.round(
+                    forecastDay.temp.max
+                  )}°</div>
+                  <div class="forecast-temperature-min">Lo : ${Math.round(
+                    forecastDay.temp.min
+                  )}°</div>
+                </div>
+
+              </div>
+           
+            `;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+// gets the coordinates from display temperature function
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "502951590779e9a44b221563a4491245";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayForecast);
+}
 // takes the response from API call and displays it in the HTML
 function displayTemperature(response) {
   console.log(response);
@@ -66,9 +115,10 @@ function displayTemperature(response) {
   descriptionElement.innerHTML = response.data.weather[0].description;
   cityElement.innerHTML = response.data.name;
   humidityElement.innerHTML = `${response.data.main.humidity} %`;
-  windElement.innerHTML = `${response.data.wind.speed} km/h`;
+  windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
-  iconElement.innerHTML = `<img src=" http://openweathermap.org/img/wn/${icon}@2x.png">`;
+  iconElement.innerHTML = `<img src=" http://openweathermap.org/img/wn/${icon}@2x.png" width="120">`;
+  getForecast(response.data.coord);
 }
 
 function displayFahrenheitTemperature(event) {
@@ -78,18 +128,18 @@ function displayFahrenheitTemperature(event) {
   temperatureElement.innerHTML = Math.round(fTemperature);
 }
 
-// prevent page from loading & takes city input from user and calls SearchCity function
-function handleSubmit(event) {
-  event.preventDefault();
-  let cityInputEl = document.querySelector("#city-input");
-  searchCity(cityInputEl.value);
-}
-
 function displayCelsiusTemperature(event) {
   event.preventDefault();
 
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+// prevent page from loading & takes city input from user and calls SearchCity function
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputEl = document.querySelector("#city-input");
+  searchCity(cityInputEl.value);
 }
 // loads default city when a page loads
 searchCity("Montreal");

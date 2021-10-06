@@ -10,6 +10,7 @@ body {
   background-color: #cee1e0;
   color: #3a3938;
 }
+
 .root {
   margin-top: 20px;
 }
@@ -17,6 +18,7 @@ body {
   max-width: 760px;
   padding-right: 10px;
   padding-left: 10px;
+  padding-bottom: 20px;
   border-radius: 6px;
   background-color: #ffff;
 
@@ -74,6 +76,35 @@ body {
 .units {
   font-size: 20px;
 }
+
+.active {
+  cursor: default;
+  color: #3a3938;
+  text-decoration: none;
+}
+
+.forecast-date {
+  text-align: center;
+}
+.forecast-temperature-max {
+  text-align: center;
+  color: salmon;
+  font-size: 14px;
+}
+.forecast-temperature-min {
+  text-align: center;
+  color: teal;
+  font-size: 14px;
+}
+.forecast-temperature {
+  text-align: center;
+}
+.forecast-icon {
+  margin-left: 5px;
+}
+.weather-forecast {
+  text-align: center;
+}
 footer {
   text-align: left;
   display: block;
@@ -83,9 +114,16 @@ footer {
 
 #city {
   color: #086c6c;
-  font-weight: 500;
+  font-weight: 600;
 }
 #date-time {
   font-size: 13px;
   color: #bebebe;
+}
+#humidity {
+  color: salmon;
+}
+
+#wind {
+  color: salmon;
 }
