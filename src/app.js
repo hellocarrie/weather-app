@@ -48,6 +48,47 @@ function formatDate(timestamp) {
 
   return `<li> Last updated: ${days[day]} ${hours}:${mins}</li> <li>${months[month]} ${calDay} ${year}</li>`;
 }
+function formatSunset(timestamp) {
+  //format Friday 10:00
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let mins = date.getMinutes();
+  if (mins < 10) {
+    mins = `0${mins}`;
+  }
+  let day = date.getDay();
+  let days = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+  ];
+  let month = date.getMonth();
+  let months = [
+    "january",
+    "februfary",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "October",
+    "November",
+    "December",
+  ];
+  let calDay = date.getDate();
+  let year = date.getFullYear();
+
+  return `${hours}:${mins}`;
+}
 function formatDay(time) {
   let date = new Date(time * 1000);
   let day = date.getDay();
@@ -109,7 +150,10 @@ function displayTemperature(response) {
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date-time");
   let iconElement = document.querySelector("#icon");
+  let sunsetElement = document.querySelector("#sunset");
+  let sunriseElement = document.querySelector("#sunrise");
   let icon = response.data.weather[0].icon;
+
   celsiusTemperature = response.data.main.temp;
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
   descriptionElement.innerHTML = response.data.weather[0].description;
@@ -117,6 +161,8 @@ function displayTemperature(response) {
   humidityElement.innerHTML = `${response.data.main.humidity} %`;
   windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  sunsetElement.innerHTML = formatSunset(response.data.sys.sunset * 1000);
+  sunriseElement.innerHTML = formatSunset(response.data.sys.sunrise * 1000);
   iconElement.innerHTML = `<img src=" http://openweathermap.org/img/wn/${icon}@2x.png" width="120">`;
   getForecast(response.data.coord);
 }

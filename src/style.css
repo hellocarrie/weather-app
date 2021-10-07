@@ -5,6 +5,7 @@ ul {
 }
 li:first-letter {
   text-transform: uppercase;
+  line-height: 1.5;
 }
 body {
   background-color: #cee1e0;
@@ -14,11 +15,13 @@ body {
 .root {
   margin-top: 20px;
 }
+
 .weather-app {
   max-width: 760px;
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 20px;
+  padding-top: 10px;
   border-radius: 6px;
   background-color: #ffff;
 
